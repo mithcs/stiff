@@ -1,10 +1,8 @@
-#include <bits/time.h>
 #include <stdint.h>
 #include <string.h>
 #include <xcb/xcb.h>
 #include <xcb/xproto.h>
 #include <xcb/xcb_ewmh.h>
-#include <unistd.h>
 #include "main.h"
 
 xcb_connection_t *c;
