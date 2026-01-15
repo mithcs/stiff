@@ -42,9 +42,9 @@ int main() {
     switch (e->response_type & ~0x80) {
       case XCB_EXPOSE: {
           static const char *text = "It's time to take a break!";
-          static const int char_offset = 20;
-          int16_t x = screen->width_in_pixels / 2 - (char_offset * strlen(text) / 2);
-          int16_t y = screen->height_in_pixels / 2 - char_offset;
+          static const int x_offset = 25;
+          int16_t x = screen->width_in_pixels / 2 - (x_offset * strlen(text) / 2);
+          int16_t y = screen->height_in_pixels / 2;
 
           xcb_image_text_8(
             c,
@@ -53,8 +53,8 @@ int main() {
             x, y,
             text
           );
+        
           xcb_flush(c);
-
           break;
       }
 
