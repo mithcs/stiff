@@ -1,0 +1,6 @@
+[tasks.build]
+run = "gcc main.c -o main `pkg-config --cflags --libs xcb` -O3 -Wextra -Wall"
+
+[tasks.run]
+depends = ["build"]
+run = "./main"
