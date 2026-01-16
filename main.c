@@ -31,6 +31,7 @@ int main() {
     screen->root_visual,
     mask, values
   );
+  set_title(win, "stiff");
   fullscreen_window(screen->root, win);
 
   font = open_font("-schumacher-clean-bold-r-normal--50-0-75-75-c-0-iso646.1991-irv");
@@ -160,4 +161,17 @@ xcb_gcontext_t create_font_gc(xcb_window_t wid, xcb_font_t fid, xcb_gc_t fg, xcb
   xcb_create_gc(c, gc, wid, mask, values);
 
   return gc;
-};
+}
+
+void set_title(xcb_window_t win, const char* title) {
+  xcb_change_property(
+    c,
+    XCB_PROP_MODE_REPLACE,
+    win,
+    XCB_ATOM_WM_NAME,
+    XCB_ATOM_STRING,
+    8,
+    strlen(title),
+    title
+  );
+}
