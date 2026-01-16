@@ -1,10 +1,21 @@
 [tasks.build]
+description = "build stiff"
 run = "gcc stiff.c -o stiff `pkg-config --cflags --libs xcb` -O3 -Wextra -Wall"
 
+[tasks.add-runner]
+description = "create and enable stiff-runner unit"
+run = [
+  "mkdir -p ~/.config/systemd/user",
+  "cp ./stiff-runner.service ~/.config/systemd/user/stiff-runner.service",
+  "systemctl --user daemon-reload",
+  "systemctl --user enable stiff-runner"
+]
+
 [tasks.run]
+description = "build and run stiff"
 depends = ["build"]
 run = "./stiff"
 
 [tasks.install]
-depends = ["build"]
-run = "sudo cp ./stiff /usr/local/bin/stiff"
+depends = ["build", "add-runner"]
+run = ["sudo cp ./stiff /usr/local/bin/stiff"]
