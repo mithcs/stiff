@@ -1,0 +1,15 @@
+[Unit]
+Description=Stiff Runner
+After=graphical.target
+
+[Service]
+Restart=always
+RestartSec=60min
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=%h/.Xauthority
+ExecStart=/usr/local/bin/stiff
+SyslogLevel=5
+LogLevelMax=5
+
+[Install]
+WantedBy=default.target
