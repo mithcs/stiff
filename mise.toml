@@ -1,6 +1,10 @@
 [tasks.build]
-run = "gcc main.c -o main `pkg-config --cflags --libs xcb` -O3 -Wextra -Wall"
+run = "gcc stiff.c -o stiff `pkg-config --cflags --libs xcb` -O3 -Wextra -Wall"
 
 [tasks.run]
 depends = ["build"]
-run = "./main"
+run = "./stiff"
+
+[tasks.install]
+depends = ["build"]
+run = "sudo cp ./stiff /usr/local/bin/stiff"
