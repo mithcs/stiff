@@ -3,7 +3,7 @@
 #include <xcb/xcb.h>
 #include <xcb/xproto.h>
 #include <xcb/xcb_ewmh.h>
-#include "main.h"
+#include "stiff.h"
 
 xcb_connection_t *c;
 
